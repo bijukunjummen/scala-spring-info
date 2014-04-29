@@ -1,4 +1,4 @@
-name := """basic-spring-scala"""
+name := """using-spring-scala-lib"""
 
 version := "1.0"
 
@@ -9,6 +9,8 @@ libraryDependencies ++= Seq("org.springframework" % "spring-context" % "4.0.2.RE
 libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.1.3" % "test"
 
 libraryDependencies += "org.springframework" % "spring-test" % "4.0.2.RELEASE" % "test"
+
+libraryDependencies += "org.springframework.scala" %% "spring-scala" % "1.0.0.BUILD-SNAPSHOT"
 
 libraryDependencies += "junit" % "junit" % "4.11" % "test"
 

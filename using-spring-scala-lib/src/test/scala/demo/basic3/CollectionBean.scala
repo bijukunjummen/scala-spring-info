@@ -1,3 +1,3 @@
-package demo.basic2
+package demo.basic3
 
 class CollectionBean(val aCollection: Seq[String])
