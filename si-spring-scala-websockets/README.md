@@ -19,4 +19,6 @@ To run the application, first set up rabbitmq and add in the stomp plugin
 
 Application can then be started up using the following command:
 
-mvn spring-boot:run
+Build using `./gradlew build`
+
+Run using: `java -jar build/libs/si-spring-scala-websockets-1.0.0.jar`

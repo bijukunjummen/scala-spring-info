@@ -11,8 +11,7 @@
 	<int:channel id="test.channel">
 		<int:queue/>
 	</int:channel>	
-	<int:bridge id="messageLogger" input-channel="quakeinfo.channel" output-channel="test.channel" >
-		<int:poller fixed-delay="5000"/>
+	<int:bridge id="quakerHttpGateway" input-channel="quakeinfotrigger" output-channel="test.channel" >
 	</int:bridge>
 
 </beans>

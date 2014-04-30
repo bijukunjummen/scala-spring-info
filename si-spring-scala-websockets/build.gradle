@@ -37,7 +37,7 @@ dependencies {
     compile("org.springframework:spring-messaging")
     compile("org.springframework.integration:spring-integration-amqp:3.0.1.RELEASE")
     compile("org.thymeleaf:thymeleaf-spring4")
-    compile("org.projectreactor:reactor-tcp:1.0.0.RELEASE")
+    compile("org.projectreactor:reactor-tcp:1.0.1.RELEASE")
     compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
     compile("org.hibernate:hibernate-validator")
     testCompile("org.springframework.boot:spring-boot-starter-test")
