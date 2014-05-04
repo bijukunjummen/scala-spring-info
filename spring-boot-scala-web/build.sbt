@@ -18,7 +18,10 @@ libraryDependencies ++= Seq(
   "nz.net.ultraq.thymeleaf" % "thymeleaf-layout-dialect" % "1.2.1",
   "org.hsqldb" % "hsqldb" % "2.3.1",
   "org.springframework.boot" % "spring-boot-starter-tomcat" % "1.0.2.RELEASE" % "provided",
-  "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided"
+  "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
+  "junit" % "junit" % "4.11" % "test",
+  "org.scalatest" % "scalatest_2.10" % "2.1.5" % "test",
+  "org.springframework.boot" % "spring-boot-starter-test" % "1.0.2.RELEASE" % "test"
 )
 
 

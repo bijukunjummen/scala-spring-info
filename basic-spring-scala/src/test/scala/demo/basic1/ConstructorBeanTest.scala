@@ -7,10 +7,11 @@ import org.scalatest.FunSuite
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.beans.factory.annotation.Autowired
 import org.junit.Test
+import org.scalatest.FunSuite
 
 @RunWith(classOf[SpringJUnit4ClassRunner])
 @ContextConfiguration(Array("beans.xml"))
-class ConstructorBeanTest {
+class ConstructorBeanTest{
 
   @Autowired var bean: ConstructorBean = _
 

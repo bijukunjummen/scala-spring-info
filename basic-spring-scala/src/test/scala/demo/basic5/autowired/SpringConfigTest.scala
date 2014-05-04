@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.junit.Test
 
 @RunWith(classOf[SpringJUnit4ClassRunner])
-@ContextConfiguration(classes=Array(classOf[SpringConfig]))
+@ContextConfiguration(classes=Array(classOf[AutowiredConfig]))
 class SpringConfigTest {
   
   @Autowired

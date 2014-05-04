@@ -5,4 +5,4 @@ import org.springframework.context.annotation.ComponentScan
 
 @Configuration
 @ComponentScan(Array("demo.basic5.autowired"))
-class SpringConfig
+class AutowiredConfig

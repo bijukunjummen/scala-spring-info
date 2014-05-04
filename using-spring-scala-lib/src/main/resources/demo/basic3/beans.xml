@@ -11,7 +11,7 @@
     </bean>
     
     
-    <bean id="collectionBean" class="demo.basic2.CollectionBean">
+    <bean id="collectionBean" class="demo.basic3.CollectionBean">
     	<constructor-arg>
     		<list>
     			<value>Item1</value>
