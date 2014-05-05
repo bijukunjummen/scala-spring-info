@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/integration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int-amqp="http://www.springframework.org/schema/integration/amqp"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/amqp http://www.springframework.org/schema/integration/amqp/spring-integration-amqp.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<beans:import resource="rabbit-context.xml"/>
+
+		<channel id="requestChannel">
+			<queue/>		
+		</channel>
+		
+		<channel id="aggregateChannel">
+		</channel>
+
+		<gateway id="echoGateway" 
+			service-interface="rube.complicated.EchoGateway" 
+			default-request-channel="requestChannel" 
+			default-reply-timeout="5000" />
+		
+		<channel id="toAmqpOutbound"/>
+		
+		<splitter input-channel="requestChannel" 
+				output-channel="toAmqpOutbound" 
+				expression="payload.split('\s')" 
+				apply-sequence="true"/>
+		
+		<channel id="sequenceChannel"/>
+
+		<int-amqp:outbound-gateway 
+				request-channel="toAmqpOutbound" 
+				amqp-template="amqpTemplate" 
+				reply-channel="sequenceChannel" />
+
+		<channel id="enhanceMessageChannel"/>
+		
+		<int-amqp:inbound-gateway 
+				request-channel="enhanceMessageChannel" 
+				queue-names="amqp.wordsqueue"/>
+
+		<transformer input-channel="enhanceMessageChannel" expression="(payload + '').toUpperCase()" />
+		
+		<resequencer input-channel="sequenceChannel" output-channel="aggregateChannel" release-partial-sequences="false"></resequencer>
+		
+		<aggregator input-channel="aggregateChannel" ref="aggregator" method="aggregate"/>
+		
+		<beans:bean name="aggregator" class="rube.complicated.Aggregator"></beans:bean>
+		
+		<poller id="poller" fixed-delay="500" default="true"/>
+		
+</beans:beans>

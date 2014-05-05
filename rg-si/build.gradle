@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+	    maven { url "http://repo.spring.io/snapshot" }
+	    maven { url "http://repo.spring.io/milestone" }
+	    maven { url "http://repo.spring.io/release" }
+	    mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+
+jar {
+    baseName = 'rg-si'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "http://repo.spring.io/release" }
+ }
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-integration")
+    compile("org.springframework.integration:spring-integration-amqp:3.0.1.RELEASE")
+    compile("org.scala-lang:scala-library:2.10.4")
+    compile("org.springframework:spring-test")
+    compile("com.google.guava:guava:12.0")
+    testCompile("junit:junit")
+
+    testCompile("org.hamcrest:hamcrest-library")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}

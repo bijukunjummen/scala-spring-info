@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean
 @Configuration
 class WarmerConfig {
   @Bean
-  def heater(): OnOffDevice = new Heater
+  def heater() = new Heater
 
   @Bean
-  def potSensor(): SensorDevice = new PotSensor
+  def potSensor() = new PotSensor
 
   @Bean
   def warmer() = new Warmer(potSensor(), heater())

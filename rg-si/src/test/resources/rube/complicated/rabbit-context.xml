@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd 
+	   http://www.springframework.org/schema/rabbit 
+	   http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+	<rabbit:connection-factory id="rabbitConnectionFactory" username="admin" host="localhost" password="password" port="5672"/>
+	<rabbit:queue name="amqp.wordsqueue" />
+	<rabbit:direct-exchange name="amqp.words.outbound">
+		<rabbit:bindings>
+			<rabbit:binding queue="amqp.wordsqueue" key="rube.words" />
+		</rabbit:bindings>		
+	</rabbit:direct-exchange>
+	
+	<rabbit:template id="amqpTemplate"
+					 connection-factory="rabbitConnectionFactory"
+					 exchange="amqp.words.outbound"
+					 routing-key="rube.words"
+					 channel-transacted="true"/>
+	<rabbit:admin connection-factory="rabbitConnectionFactory"/>
+
+</beans>
